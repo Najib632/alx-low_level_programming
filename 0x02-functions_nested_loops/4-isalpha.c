@@ -1,11 +1,8 @@
 #include "main.h"
 
 /**
- * _isalpha - checks for alphabetic character
- * @c: parameter to check
- *
- * Return: 1 if c is a letter, lowercase or uppercase
- * returns 0 otherwise
+ * _islpha - checks if number is an alphabet
+ * @c: parameter to be checked
  */
 int _isalpha(int c)
 {
@@ -13,4 +10,5 @@ int _isalpha(int c)
 		return (1);
 	else
 		return (0);
+	_putchar('\n');
 }
