@@ -1,4 +1,4 @@
-/*#include "main.h"*/
+#include "main.h"
 #include <stdio.h>
 
 /**
@@ -14,9 +14,9 @@ void print_times_table(int n)
 	if (n < 0 || n > 15)
 	{
 		if (n < 0)
-			putchar('\n');
+			_putchar('\n');
 		else if (n > 15)
-			putchar('\n');
+			_putchar('\n');
 	}
 	else
 	{
@@ -71,8 +71,3 @@ void print_times_table(int n)
 	}
 }
 
-int main(void)
-{
-	print_times_table(12);
-	return (0);
-}
