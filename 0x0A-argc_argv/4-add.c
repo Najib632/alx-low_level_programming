@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 /**
- * main - main funct
+ * main - adds positive numbers
  * @argc: param count
  * @argv: param poiter
  * Return: int
@@ -11,7 +11,7 @@ int main(int argc, char *argv[])
 {
 	int i, j, sum = 0;
 
-	for (i = 1; i < argc; i++)
+	for (	i = 1; i < argc; i++)
 	{
 		for (j = 0; argv[i][j] != '\0'; j++)
 		{
