@@ -10,6 +10,6 @@ int main(void)
 {
 	const char *message = "and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
 	ssize_t message_length = strlen(message);
-	write(2, message, messsage_length);
+	write(2, message, message_length);
 	return (1);
 }
