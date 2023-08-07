@@ -5,7 +5,7 @@
  * @s: character to be printed
  * Return: Always 1 (Success), else -1 (Fail)
  */
-int _putchar(char s)
+int _putchar(char c)
 {
-    return (write(1, &s, strlen(s)));
+    return (write(1, &c, strlen(c)));
 }
