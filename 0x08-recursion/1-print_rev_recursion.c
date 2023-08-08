@@ -2,11 +2,12 @@
 /**
  * _print_rev_recursion - prints a string in reverse
  * @s: string parameter
+ *
  * Return: void
  */
 void _print_rev_recursion(char *s)
 {
-	int j = strlen(s);
+	int j = sizeof(s) - 1;
 
 	if (*s != '\0')
 	{
