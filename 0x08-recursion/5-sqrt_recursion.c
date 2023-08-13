@@ -4,7 +4,7 @@
  * _sqrt_recursion - returns the natural square root of a number
  * @n: radical
  *
- * Return: Natural quare root of a number, -1 otherwise
+ * Return: Natural square root of a number, -1 otherwise
  */
 int _sqrt_recursion(int n)
 {
@@ -18,8 +18,6 @@ int _sqrt_recursion(int n)
 	}
 	else
 	{
-		int sqrt_n = _sqrt_recursion(n - 1);
-
-		return (sqrt_n + (2 * n) - 1);
+		return (_radicand(n, 1));
 	}
 }
