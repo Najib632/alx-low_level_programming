@@ -35,6 +35,6 @@ int _sqrt_recursion(int n)
 	}
 	else
 	{
-		return (_radicand(n, 1));
+		return (_radicand(n, 1));	/*x_(n+1) = (x_n + N/ x_n) / 2*/
 	}
 }
