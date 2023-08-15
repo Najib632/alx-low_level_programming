@@ -1,6 +1,27 @@
 #include "dog.h"
 
 /**
+ * _strcpy - copies the string pointed to by src
+ * @dest: destination
+ * @src: source
+ *
+ * Return: the pointer to dest.
+ */
+char *_strcpy(char *dest, char *src)
+{
+	int count = 0;
+
+	while (count >= 0)
+	{
+		*(dest + count) = *(src + count);
+		if (*(src + count) == '\0')
+			break;
+		count++;
+	}
+	return (dest);
+}
+
+/**
  * new_dog - creates a dog
  * @name: Dog's name
  * @age: Dog's age
