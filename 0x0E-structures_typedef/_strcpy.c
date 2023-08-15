@@ -1,5 +1,5 @@
 #include "dog.h"
-#include <stdio.h>
+
 /**
  * _strcpy - copies the string pointed to by src
  * @dest: destination
