@@ -10,10 +10,28 @@ int is_palindrome(char *s)
 {
 	if (*s != '\0')
 	{
-		return ((*s == is_palindrome(s + 1)) ? 1 : 0);
+		is_palindrome(s + 1);
+		if (*s == *(s + 1))
+			;
+		else
+			return (0);
+
+		return (1);
 	}
 	else
 	{
 		return (0);
 	}
+}
+
+/**
+ * parser - parses in between the words
+ * @s: string
+ * @l: length of string
+ *
+ * Return: returns 1 on success and 0 otherwise
+ */
+int parser(char *s, int l)
+{
+	return (0);
 }
