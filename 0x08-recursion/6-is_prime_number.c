@@ -14,5 +14,5 @@ int is_prime_number(int n)
 	else if (n == 2 || n - 1 == 2)
 		return (1);
 	else
-		return ((n % 2 != 0) ? n * (n / 2) : is_prime_number(n - 1));
+		return ((n % 2 != 0) ? 1 : is_prime_number(n - 1));
 }
