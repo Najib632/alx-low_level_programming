@@ -23,15 +23,3 @@ int is_palindrome(char *s)
 		return (0);
 	}
 }
-
-/**
- * parser - parses in between the words
- * @s: string
- * @l: length of string
- *
- * Return: returns 1 on success and 0 otherwise
- */
-int parser(char *s, int l)
-{
-	return (0);
-}
