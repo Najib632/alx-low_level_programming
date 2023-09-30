@@ -24,7 +24,7 @@ int _strlen_recursion(char *s)
  **/
 int palindrome(char *s, int start, int end)
 {
-	if (start == end)
+	if (start >= end)
 		return (1);
 	else if (s[start] != s[end])
 		return (0);
