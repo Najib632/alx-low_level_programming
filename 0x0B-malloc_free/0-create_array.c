@@ -9,26 +9,20 @@
  **/
 char *create_array(unsigned int size, char c)
 {
+	char *ptr_c;
+	unsigned int i;
+
 	if (size == 0)
-	{
 		return (NULL);
-	}
 	else if (c == '\0')
-	{
 		return (NULL);
-	}
 	else
+		ptr_c = malloc(sizeof(char) * size);
+
+	for (i = 0; ptr_c != NULL && i < size; i++)
 	{
-		char *ptr_c = malloc(sizeof(char) * size);
-		int i = 0;
-
-		for (i = 0; ptr_c != NULL && i < size; i++)
-		{
-			ptr_c[i] = c;
-			if (i == (size - 1))
-				ptr_c[i] = '\0';
-		}
-
-		return (ptr_c);
+		ptr_c[i] = c;
 	}
+
+	return (ptr_c);
 }
