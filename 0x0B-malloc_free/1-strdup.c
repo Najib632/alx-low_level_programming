@@ -13,9 +13,9 @@ int _strlen(char *str)
 	i = 0;
 	if (*str == '\0')
 		return (i);
-	else
-		while (str[i] !='\0')
-			i++;
+
+	while (str[i] != '\0')
+		i++;
 
 	return (i);
 }
