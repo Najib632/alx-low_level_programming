@@ -13,7 +13,7 @@ int _strlen(char *str)
 	i = 0;
 	if (*str == '\0')
 		return (i);
-	
+
 	while (str[i] != '\0')
 		i++;
 
@@ -34,18 +34,32 @@ char *str_concat(char *str1, char *str2)
 	int i, j;
 	char *ptr_c;
 
-	if (*str1 == '\0' || (*str1 == '\0' && *str2 == '\0'))
+	if (str1 == NULL || str2 == NULL)
 		return (NULL);
 
 	size_1 = _strlen(str1), size_2 = _strlen(str2);
-	size_str = size_1 + size_2;
+	size_str = (size_1 - 1) + size_2; /*only one NULL char needed*/
 	ptr_c = malloc(sizeof(char) * size_str);
-	for (i = 0; ptr_c != NULL && i < size_str;)
+	if (ptr_c != NULL)
 	{
-		for (j = 0; str1[j] != '\0'; i++, j++)
-			ptr_c[i] =  str1[j];
-		for (j = 0; str2[j] != '\0'; i++, j++)
-			ptr_c[i] = str2[j];
+		i = 0;
+		j = 0;
+
+		for (i = size_1, j = 0; i > j; j++)
+			if (str1[j] != '\0')
+				ptr_c[j] = str1[j];
+			else
+				ptr_c[j] = (str1[j] == '\0') ? '\0': str1[j];
+
+		for (i = size_1 - 1, j = 0; i <= size_str; i++, j++)
+			if (*str1 != '\0')
+				ptr_c[i] = str2[j];
+			else
+				ptr_c[i + 1] = str2[j];
+	}
+	else
+	{
+		return (NULL);
 	}
 
 	return (ptr_c);
