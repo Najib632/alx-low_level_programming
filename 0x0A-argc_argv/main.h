@@ -2,6 +2,7 @@
 #define _MAIN_H_
 
 #include <stdlib.h>
+#include <stdio.h>
 int _putchar(char s);
 
 #endif /* _MAIN_H_ */
