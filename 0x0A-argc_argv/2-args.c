@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
  * main - prints all arguments that it receives
@@ -16,7 +17,7 @@ int main(int argc, char **argv)
 	{
 		for (j = 0; argv[i][j] != '\0'; j++)
 			printf("%c", argv[i][j]);
-		_putchar('\n');
+		putchar('\n');
 	}
 	return (0);
 }
