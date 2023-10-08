@@ -9,17 +9,17 @@
  **/
 int main(int argc, char *argv[])
 {
-	int multiplicant;
-	int multiple;
+	int multiplicand;
+	int multiplier;
 
-	if (argc < 2)
+	if (argc > 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
 
-	multiplicant = atoi(argv[argc - 1]);
-	multiple = atoi(argv[argc]);
-	printf("%d\n", multiplicant * multiple);
+	multiplicand = atoi(argv[1]);
+	multiplier = atoi(argv[2]);
+	printf("%d\n", multiplicand * multiplier);
 	return (0);
 }
