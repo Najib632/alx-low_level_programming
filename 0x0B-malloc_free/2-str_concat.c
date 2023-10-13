@@ -33,11 +33,13 @@ char *str_concat(char *str1, char *str2)
 	int i, j;
 	char *ptr_c;
 
-	if (str1 == NULL || str2 == NULL)
-		size_1 = (str1 != NULL) ? _strlen(str1) : 0,
-		size_2 = (str2 != NULL) ? _strlen(str2) : 0;
+	size_1 = 0, size_2 = 0;
+	if (str1 != NULL)
+		size_1 = _strlen(str1);
+	if (str2 != NULL)
+		size_2 = _strlen(str2);
 
-	size_str = (size_1 + size_2) + 1; /*only one NULL char needed*/
+	size_str = size_1 + size_2 + 1;
 	ptr_c = malloc(sizeof(char) * size_str);
 	if (ptr_c != NULL)
 	{
