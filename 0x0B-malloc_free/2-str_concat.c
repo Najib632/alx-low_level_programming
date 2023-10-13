@@ -35,7 +35,7 @@ char *str_concat(char *str1, char *str2)
 	char *ptr_c;
 
 	if (str1 == NULL || str2 == NULL)
-		;
+		return (NULL);
 
 	size_1 = _strlen(str1), size_2 = _strlen(str2);
 	size_str = (size_1 - 1) + size_2; /*only one NULL char needed*/
