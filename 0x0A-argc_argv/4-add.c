@@ -6,7 +6,7 @@
  *
  * Return: 0 (SUCCESS), 1 (FAILURE)
  **/
-int aNum(char *str)
+int aNum(char str[])
 {
 	int i;
 	int _strlen;
