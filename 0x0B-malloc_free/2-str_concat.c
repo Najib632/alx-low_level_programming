@@ -35,7 +35,7 @@ char *str_concat(char *str1, char *str2)
 	char *ptr_c;
 
 	if (str1 == NULL || str2 == NULL)
-		return (NULL);
+		;
 
 	size_1 = _strlen(str1), size_2 = _strlen(str2);
 	size_str = (size_1 - 1) + size_2; /*only one NULL char needed*/
@@ -49,7 +49,7 @@ char *str_concat(char *str1, char *str2)
 			if (str1[j] != '\0')
 				ptr_c[j] = str1[j];
 			else
-				ptr_c[j] = (str1[j] == '\0') ? '\0': str1[j];
+				ptr_c[j] = (str1[j] == '\0') ? '\0' : str1[j];
 
 		for (i = size_1 - 1, j = 0; i <= size_str; i++, j++)
 			if (*str1 != '\0')
