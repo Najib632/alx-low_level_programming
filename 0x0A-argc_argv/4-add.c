@@ -37,6 +37,8 @@ int main(int argc, char *argv[])
 	{
 		printf("%d\n", 0);
 	}
+	else
+	{
 	sum = 0;
 	for (i = 1; i < argc; i++)
 	{
@@ -51,7 +53,7 @@ int main(int argc, char *argv[])
 			return (1);
 		}
 	}
-
+	}
 	printf("%d\n", sum);
 	return (0);
 }
