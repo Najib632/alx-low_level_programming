@@ -17,7 +17,6 @@ int _strlen(char *str)
 	while (str[i] != '\0')
 		i++;
 
-	i += 1;
 	return (i);
 }
 
@@ -35,10 +34,10 @@ char *str_concat(char *str1, char *str2)
 	char *ptr_c;
 
 	if (str1 == NULL || str2 == NULL)
-		return (NULL);
+		size_1 = (str1 != NULL) ? _strlen(str1) : 0,
+		size_2 = (str2 != NULL) ? _strlen(str2) : 0;
 
-	size_1 = _strlen(str1), size_2 = _strlen(str2);
-	size_str = (size_1 - 1) + size_2; /*only one NULL char needed*/
+	size_str = (size_1 + size_2) + 1; /*only one NULL char needed*/
 	ptr_c = malloc(sizeof(char) * size_str);
 	if (ptr_c != NULL)
 	{
