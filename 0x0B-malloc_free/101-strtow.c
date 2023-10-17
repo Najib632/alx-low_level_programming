@@ -61,7 +61,7 @@ char **strtow(char *str)
 	if (_strlen == 0)
 		return (NULL);
 
-	sptr = malloc(_strlen * sizeof(char *));
+	sptr = malloc((_strlen + 1) * sizeof(char *));
 	if (sptr == NULL)
 		return (NULL);
 
@@ -69,10 +69,12 @@ char **strtow(char *str)
 	{
 		sptr[i] = getw(str, &j);
 		if (sptr[i] == NULL)
+		{
 			for (j = 0; j < i; j++)
 				free(sptr[j]);
-		free(sptr);
-		return (NULL);
+			free(sptr);
+			return (NULL);
+		}
 	}
 	sptr[i] = '\0';
 	return (sptr);
