@@ -15,13 +15,13 @@ int main(int argc, char *argv[])
 
 	change = 0;
 	money = atoi(argv[1]);
-	if (argc == 2)
+	if (argc != 2)
 	{
 		printf("Error\n");
 		return (1);
 	}
 
-	if (money < 0)
+	if (money <= 0)
 	{
 		printf("%d\n", change);
 	}
@@ -29,9 +29,19 @@ int main(int argc, char *argv[])
 	{
 		while (money > 0)
 		{
-			if (money / 25)
-				money = money
+			if (money >= 25)
+				money -= 25;
+			if (money >= 10)
+				money -= 10;
+			if (money >= 5)
+				money -= 5;
+			if (money >= 2)
+				money -= 2;
+			if (money >= 1)
+				money--;
+			change++;
 		}
+		printf("%d\n", change);
 	}
 	return (0);
 }
