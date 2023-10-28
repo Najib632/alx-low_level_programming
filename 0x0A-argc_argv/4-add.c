@@ -4,7 +4,7 @@
  * is_num_string - checks if a string is a number
  * @str: string to be checked
  *
- * Return: 1 (SUCCESS), 0 (FAILURE)
+ * Return: 0 (SUCCESS), 1 (FAILURE)
  **/
 int is_num_string(char *str)
 {
@@ -12,10 +12,10 @@ int is_num_string(char *str)
 
 	for (i = 0; str[i] != '\0'; i++)
 	{
-		if (!isdigit(str[i]))
-			return (0);
+		if (isdigit(str[i]))
+			return (1);
 	}
-	return (1);
+	return (0);
 }
 
 /**
@@ -40,7 +40,7 @@ int main(int argc, char *argv[])
 
 		for (i = 0; i < argc; i++)
 		{
-			if (!is_num_string(argv[i]))
+			if (is_num_string(argv[i]))
 			{
 				printf("Error\n");
 				return (1);
