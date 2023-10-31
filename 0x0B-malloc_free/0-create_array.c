@@ -13,8 +13,7 @@ char *create_array(unsigned int size, char c)
 	char *array;
 	unsigned int i;
 
-	i = 0;
-	if (size != i)
+	if (size != 0)
 		array = malloc(sizeof(char) * size);
 	else
 		return (NULL);
@@ -28,5 +27,5 @@ char *create_array(unsigned int size, char c)
 		else
 			array[i] = c;
 
-	return (0);
+	return (array);
 }
