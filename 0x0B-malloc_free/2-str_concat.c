@@ -17,8 +17,10 @@ char *str_concat(char *str1, char *str2)
 	int j;
 	int s_conc;
 
-	if (str1 == NULL && str2 == NULL)
-		return (NULL);
+	if (str1 == NULL)
+		str1 = "";
+	else if (str2 == NULL)
+		str2 = "";
 
 	for (i = 0; str1[i]; i++)
 		;
