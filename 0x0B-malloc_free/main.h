@@ -4,5 +4,6 @@
 #include <stdlib.h>
 char *create_array(unsigned int size, char c);
 char *_strdup(char *str);
+char *str_concat(char *str1, char *str2);
 
 #endif /* _MAIN_H_ */
