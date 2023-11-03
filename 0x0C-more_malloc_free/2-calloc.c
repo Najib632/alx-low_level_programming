@@ -19,6 +19,5 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 		if (alloc == NULL)
 			return (NULL);
 
-		alloc = 0;
 		return (alloc);
 }
