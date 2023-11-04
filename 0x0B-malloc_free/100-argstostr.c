@@ -65,7 +65,7 @@ char *argstostr(int ac, char **av)
 		return (NULL);
 
 	strl = 0;
-	for (i = 1; i < ac; i++)
+	for (i = 0; i < ac; i++)
 	{
 		for (j = 0; av[i][j]; j++)
 		{
@@ -79,7 +79,7 @@ char *argstostr(int ac, char **av)
 		return (NULL);
 
 	_memset(s, '\0', strl * sizeof(char));
-	for (i = 1, k = 0; i < ac; i++)
+	for (i = 0, k = 0; i < ac; i++)
 	{
 		c = _strdup(av[i]);
 		for (strl = 0; c[strl]; strl++)
