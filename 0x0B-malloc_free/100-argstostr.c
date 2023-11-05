@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdio.h>
+#include <string.h>
 
 /**
  * _strdup - returns a pointer to a newly allocated space in memory,
@@ -57,7 +58,6 @@ char *_memset(char *s, char b, unsigned int n)
 char *argstostr(int ac, char **av)
 {
 	char *s;
-	char *c;
 	int i, j, k, strl;
 
 	if (ac < 0 || av == NULL)
@@ -66,13 +66,12 @@ char *argstostr(int ac, char **av)
 	strl = 0;
 	for (i = 0; i < ac; i++)
 	{
-		for (j = 0; av[i][j]; j++)
-		{
-			strl++;
-		}
+		char *c = _strdup(av[i]);
+
+		strl += strlen(c) + 1;
+		free(c);
 	}
 
-	strl += ac;
 	s = malloc(strl * sizeof(char));
 	if (s == NULL)
 		return (NULL);
@@ -80,14 +79,14 @@ char *argstostr(int ac, char **av)
 	_memset(s, '\0', strl * sizeof(char));
 	for (i = 0, k = 0; i < ac; i++)
 	{
-		c = _strdup(av[i]);
-		for (strl = 0; c[strl]; strl++)
-			;
-		for (j = 0; j <= strl; j++, k++)
-			if (!c[j])
-				s[k] = '\n';
-			else
-				s[k] = c[j];
+		char *c = _strdup(av[i]);
+
+		strl = strlen(c);
+		for (j = 0; j < strl; j++, k++)
+		{
+			s[k] = c[j];
+		}
+		s[k++] = '\n';
 		free(c);
 	}
 	return (s);
