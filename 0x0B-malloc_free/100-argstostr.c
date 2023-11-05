@@ -68,7 +68,7 @@ char *argstostr(int ac, char **av)
 	{
 		char *c = _strdup(av[i]);
 
-		strl += strlen(c) + 1;
+		strl += strlen(c);
 		free(c);
 	}
 
