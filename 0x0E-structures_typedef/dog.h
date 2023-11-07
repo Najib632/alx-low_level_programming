@@ -1,6 +1,8 @@
 #ifndef _STRUCTURES_TYPEDEF_
 #define _STRUCTURES_TYPEDEF_
 
+#include <stdlib.h>
+
 /**
  * struct dog - Define a new type struct dog with the following elements
  * @name: name of dog
@@ -13,5 +15,7 @@ struct dog
 	float age;
 	char *owner;
 } dog;
+
+void init_dog(struct dog *d, char *name, float age, char *owner);
 
 #endif /* _STRUCTURES_TYPEDEF_ */
