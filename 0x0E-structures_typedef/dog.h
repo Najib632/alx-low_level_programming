@@ -3,6 +3,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stddef.h>
 
 /**
  * struct dog - Define a new type struct dog with the following elements
