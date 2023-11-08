@@ -2,6 +2,7 @@
 #define _STRUCTURES_TYPEDEF_
 
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
  * struct dog - Define a new type struct dog with the following elements
@@ -17,5 +18,6 @@ struct dog
 };
 
 void init_dog(struct dog *d, char *name, float age, char *owner);
+void print_dog(struct dog *d);
 
 #endif /* _STRUCTURES_TYPEDEF_ */
