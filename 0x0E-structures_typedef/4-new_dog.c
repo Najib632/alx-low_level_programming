@@ -25,7 +25,7 @@ int _strlen(char *str)
  **/
 dog_t *new_dog(char *name, float age, char *owner)
 {
-	int namesize, ownsize;
+	int namesize, ownsize, i;
 	dog_t *dog;
 
 	dog = malloc(sizeof(dog_t));
@@ -33,7 +33,27 @@ dog_t *new_dog(char *name, float age, char *owner)
 	{
 		return (NULL);
 	}
+	namesize = _strlen(name);
+	dog->name = malloc((namesize + 1) * sizeof(char));
+	if (!dog->name)
+	{
+		free(dog);
+		return (NULL);
+	}
+	ownsize = _strlen(owner);
+	dog->owner = malloc((ownsize + 1) * sizeof(char));
+	if (!dog->owner)
+	{
+		free(dog->name);
+		free(dog);
+		return (NULL);
+	}
 
+	for (i = 0; i <= namesize; i++)
+		dog->name[i] = name[i];
+	for (i = 0; i <= ownsize; i++)
+		dog->owner[i] = owner[i];
+	dog->age = age;
 
 	return (dog);
 }

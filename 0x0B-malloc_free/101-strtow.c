@@ -106,6 +106,7 @@ char **strtow(char *str)
 		{
 			j++;
 		}
+		printf("OUT of for-loop\n");
 	}
 	tow[len] = NULL;
 	return (tow);
