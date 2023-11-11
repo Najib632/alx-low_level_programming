@@ -65,49 +65,5 @@ int wcount(char *str)
 char **strtow(char *str)
 {
 	char **tow;
-	int i, j, k, l, m, state = OUT;
-	int len;
-
-	if (str == NULL)
-		return (NULL);
-	len = wcount(str);
-	tow = malloc(len + 1 * sizeof(tow));
-	if (tow == NULL)
-		return (NULL);
-	k = -1, j = 0;
-	for (i = 0; str[i]; i++)
-	{
-		if (str[i] == ' ')
-		{
-			if (state == IN)
-			{
-				j++;
-				k++;
-				state = OUT;
-				tow[k] = malloc((j + 1) * sizeof(*str));
-				if (tow[k] == NULL)
-				{
-					free_tow(tow, len);
-					return (NULL);
-				}
-			}
-		}
-		else if (state == OUT)
-		{
-			state = IN;
-			for (l = i, m = j; str[l - 1] != ' ' && k >= 0 && m >= 0; m--)
-				if ((j - m) != j)
-					tow[k][j - m] = str[l - m];
-				else
-					tow[k][j - m] = '\0';
-			j = 0;
-		}
-		else
-		{
-			j++;
-		}
-		printf("OUT of for-loop\n");
-	}
-	tow[len] = NULL;
 	return (tow);
 }
