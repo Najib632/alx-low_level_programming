@@ -42,12 +42,12 @@ int wcount(char *str)
 			if (state == IN)
 			{
 				state = OUT;
-				wordn += 1;
 			}
 		}
 		else if (state == OUT)
 		{
 			state = IN;
+			wordn += 1;
 		}
 		else
 		{
@@ -68,7 +68,7 @@ char **strtow(char *str)
 	int i, j, k, m;
 	int len;
 
-	if (str == NULL)
+	if (str == NULL || *str == '\0' || *str == ' ')
 		return (NULL);
 	len = wcount(str);
 	tow = malloc((len + 1) * sizeof(tow));
@@ -76,7 +76,7 @@ char **strtow(char *str)
 		return (NULL);
 	tow[len] = NULL;
 	for (i = 0, k = -1, j = 0; str[i]; i++)
-	{
+	{/*Talk is cheap. Show me the code.*/
 		if (str[i] != ' ')
 		{
 			j++;
@@ -89,17 +89,20 @@ char **strtow(char *str)
 					free_tow(tow, len);
 					return (NULL);
 				}
+				printf("tow[%d] is successfully allocated!\n", k);
 			}
 		}
 		else
 		{
-			for (m = j; str[i - 1] != ' ' && k >= 0 && m >= 0; m--)
+			for (m = j; /*str[i - 1] != ' ' && */k >= 0 && m >= 0; m--)
 				if ((j - m) != j)
 					tow[k][j - m] = str[i - m];
 				else
 					tow[k][j - m] = '\0';
+			printf("Count of j: %d\n", j);
 			j = 0;
 		}
+		printf("str[%i]: %c\n", i, str[i]);
 	}
 	return (tow);
 }
