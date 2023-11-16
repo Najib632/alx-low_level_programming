@@ -10,7 +10,7 @@
  **/
 int main(int argc, char *argv[])
 {
-	if (!(argc > 3))
+	if (argc != 4)
 	{
 		printf("Error\n");
 		exit(98);
