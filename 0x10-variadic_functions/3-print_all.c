@@ -14,7 +14,7 @@ void print_all(const char * const format, ...)
 	va_list args;
 
 	va_start(args, format);
-	while (format[d])
+	while (format != NULL && format[d])
 	{
 		switch (format[d])
 		{
@@ -34,10 +34,8 @@ void print_all(const char * const format, ...)
 				f = (float)va_arg(args, double);
 				printf("%f", f);
 				break;
-			default:
-				break;
 		}
-		if (format[d] != '\0' && (format[d] == 'c' || format[d] == 's' ||
+		if (format[d + 1] && (format[d] == 'c' || format[d] == 's' ||
 			format[d] == 'i' || format[d] == 'f'))
 			printf(", ");
 		d++;
