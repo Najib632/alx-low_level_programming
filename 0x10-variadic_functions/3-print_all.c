@@ -37,10 +37,10 @@ void print_all(const char * const format, ...)
 			default:
 				break;
 		}
-		d++;
 		if (format[d] != '\0' && (format[d] == 'c' || format[d] == 's' ||
 			format[d] == 'i' || format[d] == 'f'))
 			printf(", ");
+		d++;
 	}
 	putchar('\n');
 	va_end(args);
