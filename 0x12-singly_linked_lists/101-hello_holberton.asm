@@ -1,5 +1,5 @@
 section .data
-msg: db "Hello, Holberton", 10, 0
+msg: db "Hello, Holberton", 10
 
 section .text
 global main
@@ -9,7 +9,7 @@ main:
 mov rax, 1; syscall number for write
 mov rdi, 1; stdout
 mov rsi, msg;
-mov rdx, 18; length of message
+mov rdx, 17; length of message
 syscall
 
 ; Exit program
