@@ -10,19 +10,17 @@
 listint_t *get_nodeint_at_index(listint_t *head, unsigned int index)
 {
 	unsigned int i;
-	listint_t *node_parser;
+	listint_t *node_parser = NULL;
 
 	if (head && ((int)index >= 0))
 	{
 		node_parser = head;
-		for (i = 0; i < index && node_parser->next; ++i)
+		for (i = 0; i < index; ++i)
 		{
+			if (i < index && !node_parser->next)
+				return (NULL);
 			node_parser = node_parser->next;
 		}
-	}
-	else
-	{
-		return (NULL);
 	}
 	return (node_parser);
 }
