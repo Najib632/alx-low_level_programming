@@ -12,9 +12,9 @@ int sum_listint(listint_t *head)
 	int sum;
 
 	node_parser = head;
-	for (sum = 0; node_parser->next != NULL; sum += node_parser->n)
+	for (sum = 0; node_parser != NULL; node_parser = node_parser->next)
 	{
-		node_parser = node_parser->next;
+		sum += node_parser->n;
 	}
 	return (sum);
 }
