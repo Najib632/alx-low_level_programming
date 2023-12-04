@@ -12,7 +12,7 @@ int pop_listint(listint_t **head)
 	int n = 0;
 	listint_t *pop_node;
 
-	if (head)
+	if (*head)
 	{
 		pop_node = *head;
 		n = pop_node->n;
