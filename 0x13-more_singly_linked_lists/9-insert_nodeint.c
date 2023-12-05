@@ -11,8 +11,8 @@
 listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 {
 	listint_t *new_node = NULL;
-	listint_t *prev_node = *head;
-	listint_t *curr_node = NULL;
+	listint_t *curr_node = *head;
+	listint_t *prev_node = NULL;
 	unsigned int i;
 
 	new_node = malloc(sizeof(listint_t));
@@ -20,27 +20,27 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 		return (NULL);
 	new_node->n = n;
 	new_node->next = NULL;
-	if (!prev_node)
-	{
-		*head = new_node;
-		return (new_node);
-	}
-	else if (!prev_node->next)
-	{
-		for (i = idx; i; --i)
-		{
-			if (i < idx && !prev_node->next)
-				return (NULL);
-			curr_node = prev_node;
-			prev_node = prev_node->next;
-		}
-		new_node->next = prev_node;
-		curr_node->next = new_node;
-	}
-	else
+	if (!curr_node)
 	{
 		new_node->next = *head;
 		*head = new_node;
+		return (new_node);
 	}
+	else if (idx == 0)
+	{
+		printf("first element: %d\n", curr_node->n);
+		new_node->next = curr_node->next;
+		curr_node->next = new_node;
+		return (new_node);
+	}
+	for (i = idx; i; --i)
+	{
+		if (curr_node->next == NULL)
+			return (NULL);
+		prev_node = curr_node;
+		curr_node = curr_node->next;
+	}
+	prev_node->next = new_node;
+	new_node->next = curr_node;
 	return (new_node);
 }
