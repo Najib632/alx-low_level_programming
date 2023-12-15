@@ -9,10 +9,10 @@
  **/
 void zero_once(unsigned long int n)
 {
-	if (n > 0)
+	if (n >> 1 > 0)
 		zero_once(n >> 1);
 
-	printf("%lu", n & 1);
+	_putchar((n & 1) ? '0' : '1');
 }
 
 /**
@@ -25,7 +25,7 @@ void print_binary(unsigned long int n)
 {
 	if (n == 0)
 	{
-		printf("0");
+		_putchar('0');
 	}
 	else
 	{
