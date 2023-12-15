@@ -58,11 +58,11 @@ int clear_bit(unsigned long int *n, unsigned int index)
  *
  * Return: number of bits
  **/
-int flip_bits(unsigned long int n, unsigned long int m)
+unsigned int flip_bits(unsigned long int n, unsigned long int m)
 {
-	int bits = 0, index;
+	unsigned int bits = 0, index;
 
-	for (index = 0; (1UL << index) <= n; ++index)
+	for (index = 0; index <= MAX_BIT ; ++index)
 	{
 		if (get_bit(m, index) == 1 && get_bit(n, index) == 0)
 		{
