@@ -4,14 +4,13 @@
 /**
  * zero_once - prints zero once
  * @n: number
- * @count: maximum bits
  *
  * Return: nothing
  **/
-void zero_once(unsigned long int n, int count)
+void zero_once(unsigned long int n)
 {
 	if (n >> 1 > 0)
-		zero_once(n >> 1, count + 1);
+		zero_once(n >> 1);
 
 	printf("%lu", n & 1);
 }
@@ -30,6 +29,6 @@ void print_binary(unsigned long int n)
 	}
 	else
 	{
-		zero_once(n, 1);
+		zero_once(n);
 	}
 }
