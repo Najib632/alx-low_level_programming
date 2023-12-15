@@ -9,7 +9,7 @@
  **/
 void zero_once(unsigned long int n)
 {
-	if (n >> 1 > 0)
+	if (n > 0)
 		zero_once(n >> 1);
 
 	printf("%lu", n & 1);
