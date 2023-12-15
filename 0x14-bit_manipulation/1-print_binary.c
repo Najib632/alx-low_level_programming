@@ -12,7 +12,7 @@ void zero_once(unsigned long int n)
 	if (n >> 1 > 0)
 		zero_once(n >> 1);
 
-	_putchar((n & 1) ? '0' : '1');
+	putchar((n & 1) ? '1' : '0');
 }
 
 /**
@@ -25,7 +25,7 @@ void print_binary(unsigned long int n)
 {
 	if (n == 0)
 	{
-		_putchar('0');
+		putchar('0');
 	}
 	else
 	{
