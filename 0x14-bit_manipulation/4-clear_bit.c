@@ -9,7 +9,7 @@
  **/
 int clear_bit(unsigned long int *n, unsigned int index)
 {
-	if (!n || index >= MAX_BIT || (1UL << index) > *n)
+	if (index >= MAX_BIT)
 		return (-1);
 
 	*n &= ~(1UL << index);
