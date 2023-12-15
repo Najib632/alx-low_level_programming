@@ -58,7 +58,7 @@ int clear_bit(unsigned long int *n, unsigned int index)
  *
  * Return: number of bits
  **/
-int flip_bits(unsigned long int n, unsigned int m)
+int flip_bits(unsigned long int n, unsigned long int m)
 {
 	int bits = 0, index;
 
