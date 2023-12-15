@@ -1,7 +1,5 @@
 #include "main.h"
 
-#define MAX_BIT 64
-
 /**
  * get_bit - Returns the value of a bit a given index.
  * @n: number to get bit from
