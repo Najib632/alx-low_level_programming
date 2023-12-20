@@ -10,10 +10,11 @@
 ssize_t read_textfile(const char *filename, size_t letters)
 {
 	FILE *text;
-	char buffer[1024];
+	int status = open(filename, O_RDONLY);
 	size_t letters_read;
+	char *buffer = malloc((1 + letters) * sizeof(char));
 
-	if (filename == NULL)
+	if (filename == NULL || buffer || status == -1)
 		return (0);
 	text = fopen(filename, "r");
 	if (!text)
@@ -21,6 +22,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		fclose(text);
 		return (0);
 	}
+	buffer[letters] = '\0';
 	letters_read = fread(buffer, 1, letters, text);
 	if (write(STDOUT_FILENO, buffer, letters_read) < 0)
 	{
