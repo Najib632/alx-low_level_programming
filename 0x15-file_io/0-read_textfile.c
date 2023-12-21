@@ -14,8 +14,11 @@ ssize_t read_textfile(const char *filename, size_t letters)
 	size_t letters_read;
 	char *buffer = malloc((1 + letters) * sizeof(char));
 
-	if (filename == NULL || buffer || status == -1)
+	if (filename == NULL || !buffer || status == -1)
+	{
+		printf("File naem error!");
 		return (0);
+	}
 	text = fopen(filename, "r");
 	if (!text)
 	{
