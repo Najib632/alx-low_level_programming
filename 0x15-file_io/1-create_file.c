@@ -13,19 +13,13 @@ int create_file(const char *filename, char *text_content)
 	mode_t filePerms;
 
 	if (filename == NULL)
-	{
 		return (-1);
-	}
 	filePerms = S_IRUSR | S_IWUSR;
 	fd = creat(filename, filePerms);
 	if (fd == -1)
-	{
 		return (-1);
-	}
 	if (!text_content)
-	{
 		return (1);
-	}
 	for (text_size = 0; text_content[text_size]; ++text_size)
 		;
 	stat = write(fd, text_content, text_size);
