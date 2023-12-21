@@ -24,7 +24,7 @@ int create_file(const char *filename, char *text_content)
 	}
 	if (!text_content)
 	{
-		return (-1);
+		return (1);
 	}
 	for (text_size = 0; text_content[text_size]; ++text_size)
 		;
