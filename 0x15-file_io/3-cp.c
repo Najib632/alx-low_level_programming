@@ -60,8 +60,8 @@ int main(int ac, char *av[])
 		stat = write(outputFd, buff, numRead);
 		if (stat != numRead)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
-			exit(98);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
+			exit(99);
 		}
 	}
 	check_close(inputFd, outputFd);
