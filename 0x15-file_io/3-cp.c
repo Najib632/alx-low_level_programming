@@ -32,7 +32,7 @@ void check_close(int inputFd, int outputFd)
  **/
 int main(int ac, char *av[])
 {
-	int inputFd, outputFd, stat;
+	int inputFd, outputFd, stat, openFlags;
 	mode_t filePerms;
 	ssize_t numRead;
 	char buff[BUF_SIZE];
@@ -49,10 +49,11 @@ int main(int ac, char *av[])
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
+	openFlags = O_WRONLY | O_CREAT | O_TRUNC;
 	filePerms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
-	outputFd = creat(av[2], filePerms);
+	outputFd = open(av[2], openFlags, filePerms);
 	stat = write(outputFd, buff, numRead);
-	if (outputFd == -1 || stat == -1)
+	if (outputFd == -1 || stat != numRead)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
