@@ -44,20 +44,25 @@ int main(int ac, char *av[])
 		exit(97);
 	}
 	inputFd = open(av[1], O_RDONLY);
-	if (inputFd == -1 || access(av[1], F_OK | R_OK) == -1)
+	if (inputFd == -1 || access(av[1], F_OK) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
 	filePerms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 	outputFd = creat(av[2], filePerms);
-	if (outputFd == -1 || access(av[2], F_OK | R_OK) == -1)
+	if (outputFd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
 	}
 	while ((numRead = read(inputFd, buff, BUF_SIZE)) > 0)
 	{
+		if (numRead == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
+			exit(98);
+		}
 		stat = write(outputFd, buff, numRead);
 		if (stat != numRead)
 		{
