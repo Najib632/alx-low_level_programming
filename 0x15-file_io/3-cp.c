@@ -1,5 +1,4 @@
 #include "main.h"
-#include <err.h>
 
 #define BUF_SIZE 1024
 
@@ -44,32 +43,19 @@ int main(int ac, char *av[])
 		exit(97);
 	}
 	inputFd = open(av[1], O_RDONLY);
-	if (inputFd == -1)
+	numRead = read(inputFd, buff, BUF_SIZE);
+	if (inputFd == -1 || numRead == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
 	filePerms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 	outputFd = creat(av[2], filePerms);
-	if (outputFd == -1)
+	stat = write(outputFd, buff, numRead);
+	if (outputFd == -1 || stat == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
-	}
-	numRead = read(inputFd, buff, BUF_SIZE);
-	if (numRead > 0)
-	{
-		stat = write(outputFd, buff, numRead);
-		if (stat == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
-			exit(99);
-		}
-	}
-	else
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
-		exit(98);
 	}
 	check_close(inputFd, outputFd);
 	return (0);
