@@ -1,4 +1,5 @@
 #include "main.h"
+#include <err.h>
 
 #define BUF_SIZE 1024
 
@@ -32,7 +33,7 @@ void check_close(int inputFd, int outputFd)
  **/
 int main(int ac, char *av[])
 {
-	int inputFd, outputFd, openFlags;
+	int inputFd, outputFd, stat;
 	mode_t filePerms;
 	ssize_t numRead;
 	char buff[BUF_SIZE];
@@ -48,17 +49,17 @@ int main(int ac, char *av[])
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
-	openFlags = O_WRONLY | O_CREAT | O_TRUNC;
-	filePerms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
-	outputFd = open(av[2], openFlags, filePerms);
+	filePerms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP;
+	outputFd = creat(av[2], filePerms);
 	if (outputFd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
 	}
-	while ((numRead = read(inputFd, buff, BUF_SIZE) > 0))
+	while ((numRead = read(inputFd, buff, BUF_SIZE)) > 0)
 	{
-		if (write(outputFd, buff, numRead) != numRead)
+		stat = write(outputFd, buff, numRead);
+		if (stat != numRead)
 		{
 			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 			exit(99);
