@@ -51,7 +51,7 @@ int main(int ac, char *av[])
 	}
 	filePerms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 	outputFd = creat(av[2], filePerms);
-	if (outputFd == -1)
+	if (outputFd == -1 || access(av[2], F_OK | R_OK) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
