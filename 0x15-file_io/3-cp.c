@@ -34,7 +34,6 @@ void check_close(int inputFd, int outputFd)
 int main(int ac, char *av[])
 {
 	int inputFd, outputFd, stat;
-	mode_t filePerms;
 	ssize_t numRead;
 	char buff[BUF_SIZE];
 
@@ -49,8 +48,8 @@ int main(int ac, char *av[])
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
 	}
-	filePerms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP;
-	outputFd = creat(av[2], filePerms);
+	outputFd = open(av[2], O_RDWR | O_CREAT | O_TRUNC,
+			S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP);
 	if (outputFd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
