@@ -44,7 +44,7 @@ int main(int ac, char *av[])
 		exit(97);
 	}
 	inputFd = open(av[1], O_RDONLY);
-	if (inputFd == -1 || access(av[1], F_OK) == -1)
+	if (inputFd == -1 || access(av[1], F_OK | R_OK) == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
