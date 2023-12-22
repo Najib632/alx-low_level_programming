@@ -44,7 +44,7 @@ int main(int ac, char *av[])
 	}
 	inputFd = open(av[1], O_RDONLY);
 	numRead = read(inputFd, buff, BUF_SIZE);
-	if (inputFd == -1 || numRead == -1)
+	if (inputFd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
 		exit(98);
@@ -53,7 +53,7 @@ int main(int ac, char *av[])
 	filePerms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 	outputFd = open(av[2], openFlags, filePerms);
 	stat = write(outputFd, buff, numRead);
-	if (outputFd == -1 || stat != numRead)
+	if (outputFd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
