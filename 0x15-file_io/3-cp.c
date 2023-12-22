@@ -1,5 +1,4 @@
 #include "main.h"
-#include <err.h>
 
 #define BUF_SIZE 1024
 
@@ -58,16 +57,11 @@ int main(int ac, char *av[])
 	}
 	while ((numRead = read(inputFd, buff, BUF_SIZE)) > 0)
 	{
-		if (numRead == -1)
-		{
-			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
-			exit(98);
-		}
 		stat = write(outputFd, buff, numRead);
 		if (stat != numRead)
 		{
-			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
-			exit(99);
+			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
+			exit(98);
 		}
 	}
 	check_close(inputFd, outputFd);
