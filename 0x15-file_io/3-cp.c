@@ -13,12 +13,12 @@ void check_close(int inputFd, int outputFd)
 {
 	if (close(inputFd) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close inputFd fd %d\n", inputFd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", inputFd);
 		exit(100);
 	}
 	if (close(outputFd) == -1)
 	{
-		dprintf(STDERR_FILENO, "Error: Can't close outputFd fd %d\n", outputFd);
+		dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", outputFd);
 		exit(100);
 	}
 }
@@ -32,7 +32,7 @@ void check_close(int inputFd, int outputFd)
  **/
 int main(int ac, char *av[])
 {
-	int inputFd, outputFd, stat, openFlags;
+	int inputFd, outputFd, openFlags;
 	mode_t filePerms;
 	ssize_t numRead;
 	char buff[BUF_SIZE];
@@ -43,7 +43,6 @@ int main(int ac, char *av[])
 		exit(97);
 	}
 	inputFd = open(av[1], O_RDONLY);
-	numRead = read(inputFd, buff, BUF_SIZE);
 	if (inputFd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
@@ -52,11 +51,18 @@ int main(int ac, char *av[])
 	openFlags = O_WRONLY | O_CREAT | O_TRUNC;
 	filePerms = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 	outputFd = open(av[2], openFlags, filePerms);
-	stat = write(outputFd, buff, numRead);
 	if (outputFd == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
 		exit(99);
+	}
+	while ((numRead = read(inputFd, buff, BUF_SIZE) > 0))
+	{
+		if (write(outputFd, buff, numRead) != numRead)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
+			exit(99);
+		}
 	}
 	check_close(inputFd, outputFd);
 	return (0);
