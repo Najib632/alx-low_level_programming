@@ -64,6 +64,11 @@ int main(int ac, char *av[])
 			exit(99);
 		}
 	}
+	if (numRead == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
+		exit(98);
+	}
 	check_close(inputFd, outputFd);
 	return (0);
 }
