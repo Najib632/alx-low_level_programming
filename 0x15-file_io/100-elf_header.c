@@ -58,6 +58,14 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "Error: Cannot read ELF header from file %s\n", argv[1]);
 		exit(98);
 	}
+	if (elf_header.e_ident[EI_MAG0] != ELFMAG0 ||
+			elf_header.e_ident[EI_MAG1] != ELFMAG1 ||
+			elf_header.e_ident[EI_MAG2] != ELFMAG2 ||
+			elf_header.e_ident[EI_MAG3] != ELFMAG3)
+	{
+		fprintf(stderr, "Error: File %s is not an ELF file\n", argv[1]);
+		exit(98);
+	}
 	printf_elf_header(&elf_header);
 	if (close(fd))
 	{
