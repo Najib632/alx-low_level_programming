@@ -1,7 +1,5 @@
 #include "main.h"
 
-#define BUF_SIZE 1024
-
 /**
  * check_close - Checks if closing files was successful.
  * @inputFd: input file descriptor
