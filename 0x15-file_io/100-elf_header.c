@@ -111,14 +111,14 @@ void printf_elf_header(Elf64_Ehdr *header)
 		printf("%02x ", header->e_ident[i]);
 	elf_hclass(header);
 	elf_data(header);
-	elf_osabi(header);
 	if (header->e_ident[EI_VERSION] == EV_CURRENT)
 		printf("\n  Version:                           %d (current)", EV_CURRENT);
 	else
-		printf("\n  Version:                           %d (invalid)", EV_NONE);
+		printf("\n  Version:                           %d", EV_NONE);
+	elf_osabi(header);
 	printf("\n  ABI Version:                       %d",
 			header->e_ident[EI_ABIVERSION]);
-	printf("\n  Type:                              %d", header->e_type);
+	printf("\n  Type:                              ");
 	switch (header->e_type)
 	{
 		case ET_NONE:
@@ -139,8 +139,8 @@ void printf_elf_header(Elf64_Ehdr *header)
 		default:
 			printf("<unknown: %x>", header->e_type);
 	}
-	printf("\n  Entry point address:               %#lx\n",
-			(unsigned long)header->e_entry);
+	printf("\n  Entry point address:               %#x\n",
+			(unsigned int)header->e_entry);
 }
 
 
