@@ -62,7 +62,7 @@ int wcount(char *str)
 char **strtow(char *str)
 {
 	char **tow;
-	int i, j, charc = 0, k, m;
+	int i, j, chrc = 0, wrdc, m;
 	int len;
 
 	len = wcount(str);
@@ -71,26 +71,26 @@ char **strtow(char *str)
 	tow = malloc((len + 1) * sizeof(tow));
 	if (tow == NULL)
 		return (NULL);
-	for (i = 0, k = -1; str[i]; i++)
+	for (i = 0, wrdc = -1; str[i]; i++)
 	{
 		if (str[i] != ' ')
 		{
-			charc++;
+			chrc++;
 			if (str[i + 1] == ' ' || str[i + 1] == '\0')
 			{
-				k++;
-				tow[k] = malloc((charc + 1) * sizeof(char));
-				if (tow[k] == NULL)
+				wrdc++;
+				tow[wrdc] = malloc((chrc + 1) * sizeof(char));
+				if (tow[wrdc] == NULL)
 				{
 					free_tow(tow, len);
 					return (NULL);
 				}
-				for (j = 0, m = charc; j <= charc; j++, m--)
-					if (j < charc)
-						tow[k][j] = str[(i + 1) - m];
+				for (j = 0, m = chrc; j <= chrc; j++, m--)
+					if (j < chrc)
+						tow[wrdc][j] = str[(i + 1) - m];
 					else
-						tow[k][j] = '\0';
-				charc = 0;
+						tow[wrdc][j] = '\0';
+				chrc = 0;
 			}
 		}
 	}
