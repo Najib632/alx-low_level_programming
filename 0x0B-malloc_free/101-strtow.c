@@ -1,17 +1,17 @@
-#include "main.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-#define IN	1
-#define OUT	0
+#define IN      1
+#define OUT     0
 
 /**
- * free_to - frees allocated memory to a 2D array grid
+ * free_tow - frees allocated memory to a 2D array grid
  * @tow: pointer to 2D array to be freed
  * @height: number of rows
  *
  * Return: Nothing
  **/
-void free_to(char **tow, int height)
+void free_tow(char **tow, int height)
 {
 	int i;
 
@@ -24,12 +24,12 @@ void free_to(char **tow, int height)
 }
 
 /**
- * count - counts the number of words in a string
+ * wcount - counts the number of words in a string
  * @str: string to count words in
  *
  * Return: Number of words (SUCCESSFUL), 0 (FAILURE)
  **/
-int count(char *str)
+int wcount(char *str)
 {
 	int i, state, wordn;
 
@@ -42,62 +42,65 @@ int count(char *str)
 			if (state == IN)
 			{
 				state = OUT;
+				wordn += 1;
 			}
 		}
 		else if (state == OUT)
 		{
 			state = IN;
-			wordn += 1;
+		}
+		else
+		{
 		}
 	}
 	return (wordn);
 }
+
 /**
  * strtow - returns a pointer to an array of strings (words)
  * @str: string to be split in words
  *
  * Return: pointer (SUCCESS), NULL (FAILURE)
- **/
+**/
 char **strtow(char *str)
 {
 	char **tow;
-	int i, j, k, state = OUT, wrdc = count(str), chrc = 0;
+	int i, j, k, l, m;
+	int len;
 
-	tow = malloc((wrdc + 1) * sizeof(tow));
-	tow[wrdc] = NULL;
-	for (i = 0, wrdc = -1; str[i]; i++)
+	len = wcount(str);
+	if (str == NULL || len == 0)
+		return (NULL);
+	tow = malloc(len + 1 * sizeof(tow));
+	if (tow == NULL)
+		return (NULL);
+	for (i = 0, k = -1, j = 0; str[i]; i++)
 	{
-		if (str[i] == ' ')
+		if (str[i] != ' ')
 		{
-			if (state == IN)
+			j++;
+			if (str[i++] == ' ' || str[i++] == '\0')
 			{
-				state = OUT;
-				chrc = 0;
-			}
-		}
-		else if (state == OUT)
-		{
-			state = IN;
-			wrdc++;
-		}
-		if (state == IN)
-		{
-			chrc++;
-			if (str[i + 1] == ' ' || str[i + 1] == '\0')
-			{
-				tow[wrdc] = malloc((chrc + 1) * sizeof(char));
-				if (tow[wrdc] == NULL)
+				k++;
+				printf("%d\n", k);
+				tow[k] = malloc((j + 1) * sizeof(*str));
+				if (tow[k] == NULL)
 				{
-					free_to(tow, wrdc);
+					free_tow(tow, len);
 					return (NULL);
 				}
-				for (j = 0, k = chrc; j <= chrc; ++j, --k)
-					if (j < chrc)
-						tow[wrdc][j] = str[(i + 1) - k];
-					else
-						tow[wrdc][j] = '\0';
 			}
 		}
+		else
+		{
+			for (l = i, m = j; str[l - 1] != ' ' && k >= 0 && m >= 0; m--)
+				if ((j - m) != j)
+					tow[k][j - m] = str[l - m];
+				else
+					tow[k][j - m] = '\0';
+			j = 0;
+		}
 	}
+	tow[len] = NULL;
 	return (tow);
 }
