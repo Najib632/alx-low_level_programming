@@ -42,15 +42,12 @@ int wcount(char *str)
 			if (state == IN)
 			{
 				state = OUT;
-				wordn += 1;
 			}
 		}
 		else if (state == OUT)
 		{
 			state = IN;
-		}
-		else
-		{
+			wordn += 1;
 		}
 	}
 	return (wordn);
@@ -65,42 +62,37 @@ int wcount(char *str)
 char **strtow(char *str)
 {
 	char **tow;
-	int i, j, k, l, m;
+	int i, j, charc = 0, k, m;
 	int len;
 
 	len = wcount(str);
 	if (str == NULL || len == 0)
 		return (NULL);
-	tow = malloc(len + 1 * sizeof(tow));
+	tow = malloc((len + 1) * sizeof(tow));
 	if (tow == NULL)
 		return (NULL);
-	for (i = 0, k = -1, j = 0; str[i]; i++)
+	for (i = 0, k = -1; str[i]; i++)
 	{
 		if (str[i] != ' ')
 		{
-			j++;
-			if (str[i++] == ' ' || str[i++] == '\0')
+			charc++;
+			if (str[i + 1] == ' ' || str[i + 1] == '\0')
 			{
 				k++;
-				printf("%d\n", k);
-				tow[k] = malloc((j + 1) * sizeof(*str));
+				tow[k] = malloc((charc + 1) * sizeof(char));
 				if (tow[k] == NULL)
 				{
 					free_tow(tow, len);
 					return (NULL);
 				}
+				for (j = 0, m = charc; j <= charc; j++, m--)
+					if (j < charc)
+						tow[k][j] = str[(i + 1) - m];
+					else
+						tow[k][j] = '\0';
+				charc = 0;
 			}
 		}
-		else
-		{
-			for (l = i, m = j; str[l - 1] != ' ' && k >= 0 && m >= 0; m--)
-				if ((j - m) != j)
-					tow[k][j - m] = str[l - m];
-				else
-					tow[k][j - m] = '\0';
-			j = 0;
-		}
 	}
-	tow[len] = NULL;
 	return (tow);
 }
