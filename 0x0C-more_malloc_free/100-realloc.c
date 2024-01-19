@@ -17,13 +17,11 @@ void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 	if (new_mem == NULL)
 		return (NULL);
 	if (ptr == NULL)
-	{
 		return (new_mem);
-	}
 	if (new_size < old_size)
 	{
 		free(ptr);
-		return (new_mem);
+		return (NULL);
 	}
 	if (new_size == old_size)
 		return (ptr);
