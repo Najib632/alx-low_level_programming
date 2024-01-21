@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
 #include <limits.h>
 
@@ -15,56 +16,38 @@ int is_num_string(char *str)
 	for (i = 0; str[i] != '\0'; i++)
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
-			return (1);
+			return (0);
 	}
-	return (0);
-}
-
-/**
- * put_result - diplays result using putchar
- * @result: product
- *
- * Return: Nothing
- **/
-void put_result(long long int result)
-{
-	char num[1024]; //large enough to hold result
-	int i = 0;
-
-	if (result == 0)
-	{
-		putchar('0');
-		putchar('\n');
-		return;
-	}
-
-	while (result > 0)
-	{
-		num[i++] = (result % 10) + '0';
-		result /= 10;
-	}
-
-	while (i > 0)
-	{
-		i--;
-		putchar(num[i]);
-	}
-	putchar('\n');
+	return (1);
 }
 
 /**
  * multiply - multiplies two numbers
- * @multiplicand: left operand
- * @multiplier: right operand
+ * @str1: multiplicand: left operand
+ * @str2: multiplier: right operand
+ * @size1: multiplicand string length
+ * @size2: multiplier string length
  *
  * Return: Product
  **/
-long long int multiply(char *multiplicand, char *multiplier)
+void multiply(char *str1, char *str2, size_t size1, size_t size2)
 {
-	long long int n1 = atoi(multiplicand);
-	long long int n2 = atoi(multiplier);
+	int idxr, i, j, k, l, prod, carry;
+	char *result = malloc((size1 + size2 + 1) * sizeof(char));
 
-	return (n1 * n2);
+	idxr = prod = carry = 0;
+	for (i = 0, l = size2; str2[i]; i++)
+	{
+		for (j = 0, k = size1; str1[j]; j++, k--)
+		{
+			prod = (atoi(&str1[k - 1]) * atoi(&str2[l - 1])) + carry;
+			carry = prod / 10;
+			result[idxr] = prod % 10;
+			printf("%d", result[idxr]);
+			idxr++;
+		}
+	}
+	putchar('\n');
 }
 
 /**
@@ -76,30 +59,16 @@ long long int multiply(char *multiplicand, char *multiplier)
  **/
 int main(int ac, char *av[])
 {
-	long long int product;
+	char *multiplicand, *multiplier;
 
-	if (ac != 3)
+	if (ac != 3 || !(is_num_string(av[1])) || !(is_num_string(av[2])))
 	{
-		putchar('E');
-		putchar('r');
-		putchar('r');
-		putchar('o');
-		putchar('r');
-		putchar('\n');
-		exit(98);
-	}
-	if (!is_num_string(av[1]) || !is_num_string(av[2]))
-	{
-		putchar('E');
-		putchar('r');
-		putchar('r');
-		putchar('o');
-		putchar('r');
-		putchar('\n');
+		printf("Error\n");
 		exit(98);
 	}
 
-	product = multiply(av[1], av[2]);
-	put_result(product);
+	multiplicand = av[1];
+	multiplier = av[2];
+	multiply(multiplicand, multiplier, strlen(av[1]), strlen(av[2]));
 	return (0);
 }
