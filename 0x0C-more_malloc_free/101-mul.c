@@ -33,29 +33,32 @@ int is_num_string(char *str)
 void multiply(char *str1, char *str2, size_t size1, size_t size2)
 {
 	int prod, carry, left, right, result;
-	int i, j, k, l, m, write, size_p = size1 + size2;
+	unsigned int write;
+	int i, j, m, size_p = size1 + size2 + 1;
 	char *answer = malloc(size_p * sizeof(char));
 
 	carry = 0;
 	prod = 0;
 	memset(answer, 0, size_p);
-	for (i = 0; str2[i]; ++i)
+	for (i = size2 - 1; i >= 0; --i)
 	{
-		k = size2 - (i + 1);
-		right = str2[k] - '0';
-		for (j = 0; str1[j]; ++j)
+		right = str2[i] - '0';
+		for (j = size1 - 1; j >= 0; --j)
 		{
-			l = size1 - (j + 1);
-			left = str1[l] - '0';
+			left = str1[j] - '0';
 			prod = (left * right) + carry;
-			carry = prod / 10;
 			result = prod % 10;
-			m = l + k;
-			write = answer[m] <= '0' ? (answer[m] - '0') + result : ((answer[m] - '0') + result) + '0';
+			m = i + j;
+			write = answer[m] == 0 ? result : (answer[m] - '0') + result;
+			answer[m] = (write % 10) + '0';
+			if (write > 9)
+				answer[m - 1] = (write / 10) + '0';
+			carry = prod / 10;
 		}
 	}
 	printf("%s", answer);
 	putchar('\n');
+	free(answer);
 }
 
 /**
