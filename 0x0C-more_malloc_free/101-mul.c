@@ -32,21 +32,29 @@ int is_num_string(char *str)
  **/
 void multiply(char *str1, char *str2, size_t size1, size_t size2)
 {
-	int idxr, i, j, k, l, prod, carry;
-	char *result = malloc((size1 + size2 + 1) * sizeof(char));
+	int prod, carry, left, right, result;
+	int i, j, k, l, write, size_p = size1 + size2;
+	char *answer = malloc(size_p * sizeof(char));
 
-	idxr = prod = carry = 0;
-	for (i = 0, l = size2; str2[i]; i++)
+	carry = 0;
+	prod = 0;
+	memset(answer, 0, size_p);
+	for (i = 0; str2[i]; ++i)
 	{
-		for (j = 0, k = size1; str1[j]; j++, k--)
+		k = size2 - (i + 1);
+		right = str2[k] - '0';
+		for (j = 0; str1[j]; ++j)
 		{
-			prod = (atoi(&str1[k - 1]) * atoi(&str2[l - 1])) + carry;
+			l = size1 - (j + 1);
+			left = str1[l] - '0';
+			prod = (left * right) + carry;
 			carry = prod / 10;
-			result[idxr] = prod % 10;
-			printf("%d", result[idxr]);
-			idxr++;
+			result = prod % 10;
+			write = (answer[l + k] - '0') + result;
+			answer[l + k] = (write < 9) ? write + '0' : ;
 		}
 	}
+	printf("%s", answer);
 	putchar('\n');
 }
 
