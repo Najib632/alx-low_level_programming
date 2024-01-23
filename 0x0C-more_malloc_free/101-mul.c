@@ -40,11 +40,12 @@ void *pop(void *ptr, unsigned int size, unsigned int index)
 	popped = malloc(size * sizeof(char));
 	if (popped == NULL)
 		return (NULL);
-	for (i = 0, j = 0; i < size; i++)
+	for (i = 0, j = 0; i <= size; i++)
 	{
 		if (i != index)
 			popped[j++] = p_ptr[i];
 	}
+	free(p_ptr);
 	return (popped);
 }
 
@@ -60,22 +61,22 @@ void *pop(void *ptr, unsigned int size, unsigned int index)
 void *multiply(char *str1, char *str2, size_t size1, size_t size2)
 {
 	int prod, carry, left, right, result;
-	unsigned int write;
-	int i, j, m, size_p = size1 + size2 + 1, fsize;
+	int i, j, m, write, size_p = size1 + size2 + 1, fsize = size_p;
 	char *answer = malloc(size_p * sizeof(char));
 
+	if (answer == NULL)
+		return (NULL);
 	carry = prod = 0;
-	fsize = size_p;
 	memset(answer, 0, size_p);
 	for (i = size2 - 1; i >= 0; --i)
 	{
 		right = str2[i] - '0';
 		if (i == 0 && right == 0)
 		{
-			printf("0\n");
-			return (NULL);
+			answer[0] = '0', answer[1] = '\0';
+			return (answer);
 		}
-		for (j = size1 - 1, m = size_p - 2; j >= 0; --j)
+		for (j = size1 - 1, m = size_p - 2; j >= 0; --j, --m)
 		{
 			left = str1[j] - '0';
 			prod = (left * right) + carry;
@@ -92,12 +93,12 @@ void *multiply(char *str1, char *str2, size_t size1, size_t size2)
 			}
 			carry = prod / 10;
 		}
-		size_p--;
+		--size_p;
 	}
 	if (carry > 0)
 		answer[0] = carry + '0';
 	else
-		answer = pop(answer, fsize - 1, 0);
+		answer = pop(answer, fsize - 1, carry);
 	return (answer);
 }
 
@@ -110,7 +111,7 @@ void *multiply(char *str1, char *str2, size_t size1, size_t size2)
  **/
 int main(int ac, char *av[])
 {
-	char *product, *multiplicand, *multiplier;
+	char *multiplicand, *multiplier, *product;
 
 	if (ac != 3 || !(is_num_string(av[1])) || !(is_num_string(av[2])))
 	{
