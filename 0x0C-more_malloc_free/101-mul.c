@@ -66,16 +66,16 @@ void *multiply(char *str1, char *str2, size_t size1, size_t size2)
 
 	if (answer == NULL)
 		return (NULL);
+	if (str1[0] == '0' ||  str2[0] == '0')
+	{
+		answer[0] = '0', answer[1] = '\0';
+		return (answer);
+	}
 	carry = prod = 0;
 	memset(answer, 0, size_p);
 	for (i = size2 - 1; i >= 0; --i)
 	{
 		right = str2[i] - '0';
-		if (i == 0 && right == 0)
-		{
-			answer[0] = '0', answer[1] = '\0';
-			return (answer);
-		}
 		for (j = size1 - 1, m = size_p - 2; j >= 0; --j, --m)
 		{
 			left = str1[j] - '0';
