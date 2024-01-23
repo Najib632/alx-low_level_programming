@@ -32,7 +32,7 @@ int is_num_string(char *str)
 void *pop(void *ptr, unsigned int size, unsigned int index)
 {
 	char *popped, *p_ptr;
-	int i, j;
+	unsigned int i, j;
 
 	if (ptr == NULL)
 		return (NULL);
@@ -43,7 +43,7 @@ void *pop(void *ptr, unsigned int size, unsigned int index)
 	for (i = 0, j = 0; i < size; i++)
 	{
 		if (i != index)
-			popped[j++] = p_ptr[i]
+			popped[j++] = p_ptr[i];
 	}
 	return (popped);
 }
@@ -73,7 +73,7 @@ void *multiply(char *str1, char *str2, size_t size1, size_t size2)
 		if (i == 0 && right == 0)
 		{
 			printf("0\n");
-			return;
+			return (NULL);
 		}
 		for (j = size1 - 1, m = size_p - 2; j >= 0; --j)
 		{
@@ -98,8 +98,7 @@ void *multiply(char *str1, char *str2, size_t size1, size_t size2)
 		answer[0] = carry + '0';
 	else
 		answer = pop(answer, fsize - 1, 0);
-	printf("%s", answer);
-	free(answer);
+	return (answer);
 }
 
 /**
@@ -111,7 +110,7 @@ void *multiply(char *str1, char *str2, size_t size1, size_t size2)
  **/
 int main(int ac, char *av[])
 {
-	char *multiplicand, *multiplier;
+	char *product, *multiplicand, *multiplier;
 
 	if (ac != 3 || !(is_num_string(av[1])) || !(is_num_string(av[2])))
 	{
@@ -121,6 +120,8 @@ int main(int ac, char *av[])
 
 	multiplicand = av[1];
 	multiplier = av[2];
-	multiply(multiplicand, multiplier, strlen(av[1]), strlen(av[2]));
+	product = multiply(multiplicand, multiplier, strlen(av[1]), strlen(av[2]));
+	printf("%s\n", product);
+	free(product);
 	return (0);
 }
