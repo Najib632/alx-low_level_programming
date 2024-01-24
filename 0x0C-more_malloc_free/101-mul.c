@@ -66,7 +66,7 @@ void *multiply(char *str1, char *str2, size_t size1, size_t size2)
 
 	if (answer == NULL)
 		return (NULL);
-	if (str1[0] == '0' ||  str2[0] == '0')
+	if (str1[0] == '0' || str2[0] == '0')
 	{
 		answer[0] = '0', answer[1] = '\0';
 		return (answer);
