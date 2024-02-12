@@ -2,6 +2,7 @@
 #define _MAIN_H_
 
 #define BUF_SIZE 1024
+#define _GNU_SOURCE
 
 #include <elf.h>
 #include <fcntl.h>
