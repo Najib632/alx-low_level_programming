@@ -1,3 +1,6 @@
 [submodule "0x11-printf/printf"]
 	path = 0x11-printf/printf
 	url = https://github.com/Najib632/printf.git
+[submodule "0x16-simple_shell/simple_shell"]
+	path = 0x16-simple_shell/simple_shell
+	url = https://github.com/Najib632/simple_shell.git
