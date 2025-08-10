@@ -10,8 +10,11 @@ int main(void)
 {
 	const char *message =
 				"and that piece of art is useful\" - Dora Korpar, 2015-10-19\n";
-	ssize_t message_length = strlen(message);
+	ssize_t length;
 
-	write(2, message, message_length);
+	for (length = 0; message[length]; length++)
+		;
+
+	write(2, message, length);
 	return (1);
 }
