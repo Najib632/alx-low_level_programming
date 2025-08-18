@@ -7,24 +7,24 @@
  */
 int main(void)
 {
-	int i;
-	int j;
+	int unit, tens;
 
-	for (i = 0; i < 10; i++)
-	{
-		for (j = i + 1; j < 10; j++)
+	for (tens = '0'; tens < '9'; tens++)
+	{/* ascii number for 0 is 48 and 57 for 9 */
+		for (unit = tens; unit < ':'; unit++)
 		{
-			putchar(i + '0');
-			putchar(j + '0');
-
-			if (i < 8)
+			if (unit != tens)
 			{
-				putchar(',');
-				putchar(' ');
+				putchar(tens);
+				putchar(unit);
+				if (tens < '8')
+				{
+					putchar(',');
+					putchar(' ');
+				}
 			}
 		}
 	}
 	putchar('\n');
-
 	return (0);
 }
