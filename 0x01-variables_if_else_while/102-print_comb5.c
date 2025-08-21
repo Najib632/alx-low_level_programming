@@ -1,33 +1,33 @@
 #include <stdio.h>
 
 /**
- * main - entry point
+ * main - Entry point
  *
  * Return: Always 0 (Success)
  */
 int main(void)
 {
-	int i;
-	int j;
+	int left, right;
 
-	for (i = 0; i <= 99; i++)
+	for (left = 0; left < 100; left++)
 	{
-		for (j = i + 1; j <= 99; j++)
+		for (right = 0; right < 100; right++)
 		{
-			putchar(i / 10 + '0');
-			putchar(i % 10 + '0');
-			putchar(' ');
-			putchar(j / 10 + '0');
-			putchar(j % 10 + '0');
-
-			if (!(i == 98 && j == 99))
+			if (right > left)
 			{
-				putchar(',');
+				putchar((left / 10) + '0');
+				putchar((left % 10) + '0');
 				putchar(' ');
+				putchar((right / 10) + '0');
+				putchar((right % 10) + '0');
+				if (left < 98)
+				{
+					putchar(',');
+					putchar(' ');
+				}
 			}
 		}
 	}
-
 	putchar('\n');
 
 	return (0);
