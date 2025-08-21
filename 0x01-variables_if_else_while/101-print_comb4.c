@@ -3,32 +3,33 @@
 /**
  * main - Entry point
  *
- * Return: Always 0 (Success)
+ * Return: Always 0 (Success).
  */
 int main(void)
 {
-	int i;
-	int j;
-	int k;
+	int hundred, tens, unit;
 
-	for (i = 0; i < 10; i++)
+	for (hundred = '0'; hundred <= '9'; hundred++)
 	{
-		for (j = i + 1; j < 10; j++)
+		for (tens = hundred; tens <= '9'; tens++)
 		{
-			for (k = j + 1; k < 10; k++)
+			for (unit = tens; unit <= '9'; unit++)
 			{
-			putchar(i + '0');
-			putchar(j + '0');
-			putchar(k + '0');
-
-			if (i != 7 || j != 8 || k != 9)
-			{
-				putchar(',');
-				putchar(' ');
-			}
+				if (tens != hundred && unit != tens)
+				{
+					putchar(hundred);
+					putchar(tens);
+					putchar(unit);
+					if (hundred < '7' || tens < '8')
+					{
+						putchar(',');
+						putchar(' ');
+					}
+				}
 			}
 		}
 	}
 	putchar('\n');
+
 	return (0);
 }
