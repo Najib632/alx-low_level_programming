@@ -1,71 +1,45 @@
 #include "main.h"
-#include <stdio.h>
-/**
- * time_table_format - Prints the time table
- * with an arranged format
- * @j: represents i
- * @l: represents k
- * @n: represents n
- * Return: void
- */
-void time_table_format(int j, int l, int n)
-{
-	if ((j * l) <= 9)
-	{
-		printf("%d", j * l);
-
-		if (l != n)
-		{
-			if ((j * (l + 1)) > 9)
-				printf(",  ");
-			else
-				printf(",   ");
-		}
-	}
-	else if ((j * l) >= 10)
-	{
-		if ((j * l) < 100)
-		{
-			printf("%d", j * l);
-
-			if (l != n)
-			{
-				if ((j * (l + 1)) > 99)
-					printf(", ");
-				else
-					printf(",  ");
-			}
-		}
-		else if ((j * l) > 99)
-		{
-			printf("%d", j * l);
-
-			if (l != n)
-				printf(", ");
-		}
-	}
-}
 
 /**
- * print_times_table - prints the n times table, starting with 0
- * @n: parameter that reprenst the n times table to be printed
+ * print_times_table - A function that prints the `n` times table,
+ *                     starting with 0.
+ * @n: n times table
  *
  * Return: void
  */
 void print_times_table(int n)
 {
-	int i, k;
+	int i, j, k, prod, base;
 
-	if (n >= 0 && n <= 15)
+	if (!(n > 15 || n < 0))
 	{
 		for (i = 0; i <= n; i++)
 		{
-		for (k = 0; k <= n; k++)
-		{
-			time_table_format(i, k, n);
-		}
-		putchar('\n');
+			for (j = 0; j <= n; j++)
+			{
+				prod = j * i;
+				base = 1;
+				for (k = 1; prod / 10 != 0; k++)
+				{
+					prod /= 10;
+					base *= 10;
+				}
+				for (prod = i * j; k > 0; k--, base /= 10)
+				{
+					_putchar((prod / base) + '0');
+					prod = prod - ((prod / base) * base);
+				}
+				if (j < n)
+				{
+					_putchar(',');
+					_putchar(' ');
+					if (i * j < 100 && (j + 1) * i < 100)
+						_putchar(' ');
+					if (i * j < 10 && (j + 1) * i < 10)
+						_putchar(' ');
+				}
+			}
+			_putchar('\n');
 		}
 	}
 }
-
