@@ -1,17 +1,19 @@
 #include <stdio.h>
+#include <math.h>
 
 /**
- * main - print prime
- * Return: 0
+ * main - Finds the largest prime number
+ *
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
-	unsigned long int i = 3, n = 612852475143;
+	unsigned long i, n = 612852475143;
 
-	for (; i < 12057; i += 2)
+	for (i = 1; i < sqrt(n); i++)
 	{
-		while (n % i == 0 && n != i)
-			n /= i;
+		if (n % i == 0)
+			n = n / i;
 	}
 	printf("%lu\n", n);
 	return (0);
