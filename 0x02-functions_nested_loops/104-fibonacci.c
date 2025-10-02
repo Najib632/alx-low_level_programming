@@ -16,7 +16,7 @@ int main(void)
 	for (i = 0; i < 91; i++)
 	{
 		fib = fib + next;
-		printf("%ld", fib);
+		printf("%lu", fib);
 		next = fib > 2 ? fib - next : next;
 		if ((i + 1) < 98)
 		{
