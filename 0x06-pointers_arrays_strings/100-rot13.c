@@ -1,26 +1,25 @@
 #include "main.h"
 
 /**
- * rot13 - encodes a string into rot13
- * @s: string to encode
+ * rot13 - a simple letter substitution cipher that replaces
+ *         a letter with the 13th letter after it in the Latin alphabet.
+ * @s: string to be encoded
  *
- * Return: address of s
+ * Return: cipher text
  */
 char *rot13(char *s)
 {
-	int i, j;
-	char a[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-	char b[] = "nopqrstuvwxyzabcdefghijklmNOPQRSTUVWXYZABCDEFGHIJKLM";
+	int i;
 
-	for (i = 0; *(s + i); i++)
+	for (i = 0; s[i]; i++)
 	{
-		for (j = 0; j < 52; j++)
+		if (s[i] >= 'A' && s[i] <= 'Z')
 		{
-			if (a[j] == *(s + i))
-			{
-				*(s + i) = b[j];
-				break;
-			}
+			s[i] = s[i] >= 'A' && s[i] <= 'M' ? s[i] + 13 : s[i] - 13;
+		}
+		if (s[i] >= 'a' && s[i] <= 'z')
+		{
+			s[i] = s[i] >= 'a' && s[i] <= 'm' ? s[i] + 13 : s[i] - 13;
 		}
 	}
 	return (s);
