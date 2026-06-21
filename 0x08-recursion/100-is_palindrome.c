@@ -1,10 +1,11 @@
 #include "main.h"
+#include <stdio.h>
 
 /**
- * _strlen_recursion - counts the length of a string
- * @s: string
+ * _strlen_recursion - a function that returns the length of a string
+ * @s: string mesure
  *
- * Return: int
+ * Return: Length of String.
  **/
 int _strlen_recursion(char *s)
 {
@@ -15,32 +16,36 @@ int _strlen_recursion(char *s)
 }
 
 /**
- * palindrome - return 1 if a string is a palindrome and 0 if not
- * @s: string
- * @start: starting index
- * @end: max length
+ * go - a function to help
+ * @s: buffer
+ * @n: buffer length
+ * @i: index
  *
- * Return: 1(Success), 0 (Fail)
+ * Return: Nothing
  **/
-int palindrome(char *s, int start, int end)
+int go(char *s, int n, int i)
 {
-	if (start >= end)
-		return (1);
-	else if (s[start] != s[end])
+	int n2 = n / 2;
+
+	if (s[i] != s[n - i])
+	{
 		return (0);
-	else
-		return (palindrome(s, start + 1, end - 1));
+	}
+	if (i == n2)
+		return (1);
+	return (go(s, n, i + 1));
 }
 
 /**
- * is_palindrome - returns 1 if a string is a palindrome and 0 if not
- * @s: string
+ * is_palindrome - a function that returns 1 if a string
+ *                 is a palindrome and 0 if not
+ * @s: word
  *
- * Return: 1 (Success), 0 (Fail)
+ * Return: On Success 1, On Failure 0.
  **/
 int is_palindrome(char *s)
 {
-	int strlen = _strlen_recursion(s) - 1;
+	int n = _strlen_recursion(s);
 
-	return (palindrome(s, 0, strlen));
+	return (go(s, n - 1, 0));
 }
